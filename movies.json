@@ -1,0 +1,28 @@
+{
+  "currentMovies": [
+    {
+      "title": "Action Adventure: The Quest",
+      "poster": "path/to/poster1.jpg",
+      "description": "An epic journey through uncharted lands to discover ancient secrets.",
+      "showtimes": ["2:30 PM", "5:00 PM", "7:30 PM", "10:00 PM"]
+    }
+  ],
+  "comingSoon": [
+    {
+      "title": "Space Odyssey",
+      "poster": "path/to/coming-soon1.jpg",
+      "releaseDate": "October 15, 2023"
+    }
+  ],
+  "scheduleImage": "path/to/weekly-schedule.png",
+  "theaterPhotos": [
+    "path/to/theater1.jpg",
+    "path/to/theater2.jpg"
+  ],
+  "ads": [
+    {
+      "image": "path/to/ad1.jpg",
+      "link": "https://example.com"
+    }
+  ]
+}
