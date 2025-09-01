@@ -1,0 +1,700 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>West Central Movie Theater</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #0a0a1a;
+            color: #fff;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(to right, #0a0a1a, #1a1a3a);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .logo h1 {
+            font-size: 2.8rem;
+            color: #ffcc00;
+            text-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+            letter-spacing: 2px;
+        }
+        
+        .logo span {
+            color: #fff;
+            font-size: 1.4rem;
+        }
+        
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+        
+        nav ul li {
+            margin: 0 15px;
+        }
+        
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        nav ul li a:hover, 
+        nav ul li a.active {
+            background-color: #ffcc00;
+            color: #0a0a1a;
+        }
+        
+        /* Hero Section */
+        .hero {
+            height: 500px;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://placehold.co/1200x500/1a1a3a/ffffff?text=Theater+Interior');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+        
+        .hero-content h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+        
+        .hero-content p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #ffcc00;
+            color: #0a0a1a;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.4);
+        }
+        
+        /* Content Sections */
+        .section-title {
+            text-align: center;
+            margin: 40px 0 30px;
+            color: #ffcc00;
+            font-size: 2.2rem;
+            position: relative;
+            padding-bottom: 15px;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: #ffcc00;
+            border-radius: 2px;
+        }
+        
+        .movies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .movie-card {
+            background: #1a1a3a;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .movie-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .movie-poster {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+        
+        .movie-info {
+            padding: 20px;
+        }
+        
+        .movie-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #ffcc00;
+        }
+        
+        .movie-info p {
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        
+        .showtimes {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .time-btn {
+            background: #ffcc00;
+            color: #0a0a1a;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .time-btn:hover {
+            background: #fff;
+        }
+        
+        /* Gallery Section */
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 50px;
+        }
+        
+        .gallery-item {
+            height: 200px;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+        }
+        
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+        
+        .contact-info {
+            background: #1a1a3a;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .contact-info h3 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            font-size: 1.6rem;
+        }
+        
+        .contact-details {
+            margin-bottom: 30px;
+        }
+        
+        .contact-details p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .contact-details i {
+            margin-right: 15px;
+            color: #ffcc00;
+            font-size: 1.2rem;
+            width: 25px;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+        }
+        
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: #ffcc00;
+            color: #0a0a1a;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background: #fff;
+            transform: translateY(-3px);
+        }
+        
+        .map {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        
+        .map iframe {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+            border: none;
+        }
+        
+        /* Footer */
+        footer {
+            background: linear-gradient(to right, #0a0a1a, #1a1a3a);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        
+        .footer-ads {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .ad-banner {
+            width: 300px;
+            height: 120px;
+            background: #2a2a4a;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ffcc00;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+        
+        .ad-banner:hover {
+            background: #3a3a5a;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 204, 0, 0.2);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #2a2a4a;
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            background: #1a1a3a;
+            padding: 30px;
+            border-radius: 10px;
+            margin: 40px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+        }
+        
+        .admin-panel h2 {
+            color: #ffcc00;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .admin-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #ffcc00;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #2a2a4a;
+            border-radius: 5px;
+            background: #0a0a1a;
+            color: #fff;
+        }
+        
+        .form-group textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+        
+        .full-width {
+            grid-column: 1 / -1;
+        }
+        
+        .admin-btn {
+            background: #ffcc00;
+            color: #0a0a1a;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        
+        .admin-btn:hover {
+            background: #fff;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            nav ul li {
+                margin: 5px 0;
+                width: 100%;
+                text-align: center;
+            }
+            
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            
+            .admin-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>WEST CENTRAL <span>MOVIE THEATER</span></h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#" class="active">Home</a></li>
+                    <li><a href="#weekly-schedule">Weekly Schedule</a></li>
+                    <li><a href="#showing-today">Showing Today</a></li>
+                    <li><a href="#coming-soon">Coming Soon</a></li>
+                    <li><a href="#contact">Contact Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h2>Experience Movies Like Never Before</h2>
+            <p>State-of-the-art screens, immersive sound, and the perfect movie-going experience await you at West Central Movie Theater.</p>
+            <a href="#showing-today" class="btn">See Today's Showtimes</a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Weekly Schedule Section -->
+        <section id="weekly-schedule">
+            <h2 class="section-title">Weekly Schedule</h2>
+            <div style="text-align: center; margin-bottom: 40px;">
+                <img src="https://placehold.co/800x500/1a1a3a/ffffff?text=Weekly+Schedule+PNG" alt="Weekly Schedule" style="max-width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+            </div>
+        </section>
+
+        <!-- Showing Today Section -->
+        <section id="showing-today">
+            <h2 class="section-title">Showing Today</h2>
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <img src="https://placehold.co/400x600/1a1a3a/ffffff?text=Movie+Poster" alt="Movie Poster" class="movie-poster">
+                    <div class="movie-info">
+                        <h3>Action Adventure: The Quest</h3>
+                        <p>An epic journey through uncharted lands to discover ancient secrets.</p>
+                        <div class="showtimes">
+                            <span class="time-btn">2:30 PM</span>
+                            <span class="time-btn">5:00 PM</span>
+                            <span class="time-btn">7:30 PM</span>
+                            <span class="time-btn">10:00 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="https://placehold.co/400x600/1a1a3a/ffffff?text=Movie+Poster" alt="Movie Poster" class="movie-poster">
+                    <div class="movie-info">
+                        <h3>Mystery Mansion</h3>
+                        <p>A group of friends uncover dark secrets in an abandoned estate.</p>
+                        <div class="showtimes">
+                            <span class="time-btn">3:00 PM</span>
+                            <span class="time-btn">5:30 PM</span>
+                            <span class="time-btn">8:00 PM</span>
+                            <span class="time-btn">10:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="https://placehold.co/400x600/1a1a3a/ffffff?text=Movie+Poster" alt="Movie Poster" class="movie-poster">
+                    <div class="movie-info">
+                        <h3>Family Fun Adventure</h3>
+                        <p>A heartwarming tale of friendship and courage for the whole family.</p>
+                        <div class="showtimes">
+                            <span class="time-btn">1:00 PM</span>
+                            <span class="time-btn">3:30 PM</span>
+                            <span class="time-btn">6:00 PM</span>
+                            <span class="time-btn">8:30 PM</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Gallery Section -->
+        <section>
+            <h2 class="section-title">Our Theater</h2>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="https://placehold.co/400x300/1a1a3a/ffffff?text=Theater+Lobby" alt="Theater Lobby">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/400x300/1a1a3a/ffffff?text=Auditorium" alt="Auditorium">
+                </div>
+                <div class="gallery-item">
+                    <img src="https://placehold.co/400x300/1a1a3a/ffffff?text=Concession+Stand" alt="Concession Stand">
+                </div>
+            </div>
+        </section>
+
+        <!-- Coming Soon Section -->
+        <section id="coming-soon">
+            <h2 class="section-title">Coming Soon</h2>
+            <div class="movies-grid">
+                <div class="movie-card">
+                    <img src="https://placehold.co/400x600/1a1a3a/ffffff?text=Coming+Soon+1" alt="Coming Soon" class="movie-poster">
+                    <div class="movie-info">
+                        <h3>Space Odyssey</h3>
+                        <p>Coming Next Month</p>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="https://placehold.co/400x600/1a1a3a/ffffff?text=Coming+Soon+2" alt="Coming Soon" class="movie-poster">
+                    <div class="movie-info">
+                        <h3>Ocean Depths</h3>
+                        <p>Coming Next Month</p>
+                    </div>
+                </div>
+                
+                <div class="movie-card">
+                    <img src="https://placehold.co/400x600/1a1a3a/ffffff?text=Coming+Soon+3" alt="Coming Soon" class="movie-poster">
+                    <div class="movie-info">
+                        <h3>Desert Run</h3>
+                        <p>Coming Next Month</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <div class="contact-details">
+                        <p><i class="fas fa-map-marker-alt"></i> 123 Movie Lane, Central City, WC 12345</p>
+                        <p><i class="fas fa-phone"></i> (555) 123-4567</p>
+                        <p><i class="fas fa-envelope"></i> info@westcentralmovies.com</p>
+                        <p><i class="fas fa-clock"></i> Open Daily: 10:00 AM - 11:00 PM</p>
+                    </div>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="map">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3022.9663095343008!2d-74.00425872426607!3d40.740769871389115!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c259bf5c8eef01%3A0x41c84c6d4edbb699!2sTimes%20Square!5e0!3m2!1sen!2sus!4v1687894839590!5m2!1sen!2sus" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Panel (Hidden by default) -->
+        <section id="admin">
+            <h2 class="section-title">Admin Panel</h2>
+            <div class="admin-panel" id="adminPanel">
+                <h2>Manage Content</h2>
+                <form class="admin-form">
+                    <div class="form-group">
+                        <label for="movieTitle">Movie Title</label>
+                        <input type="text" id="movieTitle" placeholder="Enter movie title">
+                    </div>
+                    <div class="form-group">
+                        <label for="movieDate">Show Date</label>
+                        <input type="date" id="movieDate">
+                    </div>
+                    <div class="form-group">
+                        <label for="showtimes">Showtimes (comma separated)</label>
+                        <input type="text" id="showtimes" placeholder="2:30 PM, 5:00 PM, 7:30 PM">
+                    </div>
+                    <div class="form-group">
+                        <label for="posterUrl">Poster Image URL</label>
+                        <input type="text" id="posterUrl" placeholder="Enter image URL">
+                    </div>
+                    <div class="form-group full-width">
+                        <label for="movieDescription">Movie Description</label>
+                        <textarea id="movieDescription" placeholder="Enter movie description"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="section">Section</label>
+                        <select id="section">
+                            <option value="showing-today">Showing Today</option>
+                            <option value="coming-soon">Coming Soon</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="button" class="admin-btn" onclick="addMovie()">Add Movie</button>
+                    </div>
+                </form>
+            </div>
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="btn" onclick="toggleAdmin()">Toggle Admin Panel</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-ads">
+                <a href="#" class="ad-banner">Advertisement Space 1</a>
+                <a href="#" class="ad-banner">Advertisement Space 2</a>
+                <a href="#" class="ad-banner">Advertisement Space 3</a>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 West Central Movie Theater. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple admin panel functionality
+        function toggleAdmin() {
+            const adminPanel = document.getElementById('adminPanel');
+            adminPanel.style.display = adminPanel.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        // Initially hide the admin panel
+        document.getElementById('adminPanel').style.display = 'none';
+        
+        // Function to add a new movie (simulated)
+        function addMovie() {
+            alert('Movie added successfully! In a real implementation, this would update the JSON file.');
+            // This would typically send data to a server or update a JSON file
+            // For GitHub Pages, you would need to use a different approach for persistence
+        }
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if(targetId !== '#') {
+                    const targetElement = document.querySelector(targetId);
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 100,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
